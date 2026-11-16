@@ -53,7 +53,7 @@ textarea{min-height:52vh;line-height:1.5}
 .vb{display:inline-block;font-size:11px;font-weight:600;background:var(--ac);color:#fff;border-radius:999px;padding:2px 9px;margin-left:6px;vertical-align:middle;letter-spacing:.02em}
 .intro{display:flex;flex-wrap:wrap;align-items:baseline;margin:14px 0 2px}
 .intro .il .sc{font-size:.78em;letter-spacing:.05em}.intro .il{letter-spacing:.05em;font:var(--ey) var(--ew) var(--es) var(--ef);color:var(--ec);text-decoration:var(--ed);margin-right:.55em}
-.intr{display:flex;flex-wrap:wrap;align-items:baseline;margin:.55em 0 .25em;break-inside:avoid}.intr .chd.tp{cursor:pointer}.intr .chd.add{opacity:.55}.intr .chd.sel{background:#ffe08a;color:#000;border-radius:3px}
+.pr-on,#pp.on{background:var(--ac);color:#fff}.intr{display:flex;flex-wrap:wrap;align-items:baseline;margin:.55em 0 .25em;break-inside:avoid}.intr .chd.tp{cursor:pointer}.intr .chd.add{opacity:.55}.intr .chd.sel{background:#ffe08a;color:#000;border-radius:3px}
 .intro .chd,.intr .chd{font:var(--cy) var(--cw) var(--cs) var(--cf);color:var(--cc);text-decoration:var(--cd);white-space:nowrap}
 .intro .sep,.intr .sep{font:var(--cy) var(--cw) var(--cs) var(--cf);color:var(--cc);margin:0 .5em}
 #ei{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 12px}#ei .il2{font-weight:700;margin-right:2px}#ei .ic{padding:6px 12px;min-width:40px}#ei .ic.sel{background:#ffe08a;color:#000}
@@ -62,9 +62,8 @@ textarea{min-height:52vh;line-height:1.5}
 <nav><button data-t="a" class="on">Letra</button><button data-t="b">Acordes</button><button data-t="c">Exportar</button></nav>
 <main>
 <section class="p on" id="a">
-<input type="text" id="ti" placeholder="Título"><input type="text" id="su" placeholder="Subtítulo (ej. Zamba)"><input type="text" id="au" placeholder="Autor"><div class="row" style="margin:0 0 8px"><button id="pg">Pentagrama en blanco</button><button id="tb">Tablatura en blanco</button></div><div class="row" style="margin-bottom:8px"><select id="kr" style="margin:0"></select><select id="km" style="margin:0"><option value="0">Mayor</option><option value="1">Menor</option></select></div>
+<input type="text" id="ti" placeholder="Título"><input type="text" id="su" placeholder="Subtítulo (ej. Zamba)"><input type="text" id="au" placeholder="Autor"><label class="hint" for="in" style="display:block;margin:2px 0 4px">Intro (acordes separados por guiones)</label><input type="text" id="in" placeholder="La - Re - Mi7 - La" autocomplete="off"><div class="row" style="margin:0 0 8px"><button id="pg">Pentagrama en blanco</button><button id="tb">Tablatura en blanco</button></div><div class="row" style="margin-bottom:8px"><select id="kr" style="margin:0"></select><select id="km" style="margin:0"><option value="0">Mayor</option><option value="1">Menor</option></select></div>
 <div class="row" id="fm" style="margin:0 0 8px"><button data-f="*" title="Negrita (Ctrl+N)"><b>n</b></button><button data-f="_" title="Cursiva (Ctrl+I)"><i>i</i></button><button data-f="-" title="Subrayado (Ctrl+S)"><u>s</u></button><button data-f="#" title="Color (Ctrl+K)" style="color:var(--ec)">k</button><button data-f="e" title="Estribillo (Ctrl+E)" style="flex:2.4"><u style="text-decoration-thickness:1px;text-underline-offset:3px">E</u>stribillo</button></div><div class="row" style="margin:0 0 8px"><button id="fb" title="Buscar y reemplazar (Ctrl+F)">🔍 Buscar y reemplazar</button></div><div id="fr" hidden><input type="text" id="fq" data-nu placeholder="Buscar" autocomplete="off"><input type="text" id="fp" data-nu placeholder="Reemplazar por" autocomplete="off"><div class="row"><button id="fv" title="Anterior">◀</button><button id="fn2" title="Siguiente">▶</button><button id="fr1">Reemplazar</button><button id="fra">Reemplazar todo</button></div><div class="row" style="align-items:center"><label><input type="checkbox" id="fcs">Distinguir mayúsculas</label><span id="frc"></span></div></div><textarea id="tx" placeholder="Escribí la letra acá. Separá las estrofas con una línea en blanco.&#10;&#10;*Estribillo*&#10;…&#10;*fin Estribillo*"></textarea>
-<label class="hint" for="in" style="display:block;margin:10px 0 4px">Intro (acordes separados por guiones)</label><input type="text" id="in" placeholder="La - Re - Mi7 - La" autocomplete="off">
 <p class="hint">*negrita* · _cursiva_ · -subrayado- · #color#.<br>Lo que va entre *Estribillo* y *fin Estribillo* es el estribillo (en ⚙️ elegís cómo se centra); el resto va en dos columnas.<br>Una línea que empieza con <b>&gt;</b> es un interludio (acordes separados por guiones, ej. <i>&gt; La - Re - Mi7 - La</i>): no cuenta como estrofa.<br>Elegí la tonalidad para tener acordes sugeridos; los acordes se agregan en la pestaña Acordes.</p>
 </section>
 <section class="p" id="b"><p class="hint">Tocá una letra para ponerle un acorde (o un acorde de la Intro para cambiarlo). Para transportar, usá ±1/±2 semitonos o elegí la tonalidad.</p><div class="row" style="margin:0 0 10px;align-items:center"><button data-n="-2">−2</button><button data-n="-1">−1</button><select id="kt" style="margin:0;flex:2.2" title="Transportar a la tonalidad"></select><button data-n="1">+1</button><button data-n="2">+2</button></div><div id="ei"></div><div id="ed"></div></section>
@@ -82,7 +81,7 @@ textarea{min-height:52vh;line-height:1.5}
 <div id="pop" hidden>
 <div><b id="pl"></b></div><div class="row" style="margin-bottom:8px"><button id="w0" style="font-size:14px">« Palabra</button><button id="l0" style="font-size:14px">‹ Letra</button><button id="l1" style="font-size:14px">Letra ›</button><button id="w1" style="font-size:14px">Palabra »</button></div><textarea id="pi" rows="3" placeholder="Acorde (Am, G7, F#m...). / coloca el texto como subíndice y ^ como superíndice (por ej Do/Sol, Sol^sus4...)" autocapitalize="off" autocomplete="off"></textarea>
 <div class="chips" id="chips"></div>
-<div class="row"><button class="pri" id="ok">Aplicar</button><button id="rm">Quitar</button><button id="cx">Cerrar</button></div></div>
+<div class="row"><button class="pri" id="ok">Aplicar</button><button id="rm">Quitar</button><button id="pp" title="Poner el acorde entre paréntesis">( )</button><button id="cx">Cerrar</button></div></div>
 <div id="full" hidden><button id="fx">✕ Salir</button><div id="fw"></div></div>
 <div id="cp" hidden><b id="cpt">Color</b><div class="sw" id="sw"></div><b>Personalizado</b><div id="pv"></div><div id="cpr"></div><div class="cs"><span>Hex</span><input type="text" id="hx" maxlength="7" autocomplete="off" style="grid-column:2/4"></div><div class="row"><button class="pri" id="cpok">Aceptar</button><button id="cpx">Cancelar</button></div></div>
 <div id="svt"></div><div id="set" hidden><div class="sh"><b>Configuración de página</b><button class="pri" id="sx">Listo</button></div><div id="sg" style="margin-top:6px"></div><div class="row"><button id="rs">Restablecer</button></div><p class="hint" style="text-align:center;margin:10px 0 0">Acordero JFA · v<span class="vn"></span></p></div>
@@ -106,7 +105,7 @@ const save=()=>{let ok=true;try{localStorage.setItem('lac',JSON.stringify(S))}ca
  if(window.hSched)hSched();svShow(ok?'✓ Autoguardado':'⚠ No se pudo autoguardar',!ok)};
 function vars(){const r=document.documentElement.style;KEYS.forEach(([k])=>{const v=S.st[k];r.setProperty(`--${k}f`,`'${v.f}',serif`);r.setProperty(`--${k}c`,v.c);r.setProperty(`--${k}s`,v.s+'px');r.setProperty(`--${k}w`,v.b?'700':'400');r.setProperty(`--${k}y`,v.i?'italic':'normal');r.setProperty(`--${k}d`,v.u?'underline':'none')});r.removeProperty('--ac');r.setProperty('--ac2',S.st.a.c);r.setProperty('--tc',S.st.t.c);r.setProperty('--sc',S.st.s.c)}
 const SO=['Do','Re','Mi','Fa','Sol','La','Si'],AM='CDEFGAB';
-function cv(t,mode){return t.split('/').map((p,x)=>{const m=p.match(/^(do|re|mi|fa|sol|la|si|[a-g])([#b♯♭]?)(.*)$/i);if(!m||(x&&m[3].replace(/^\^.*/,'')))return p;
+function cv(t,mode){const pm=t.match(/^\((.*)\)$/);if(pm)return '('+cv(pm[1],mode)+')';return t.split('/').map((p,x)=>{const m=p.match(/^(do|re|mi|fa|sol|la|si|[a-g])([#b♯♭]?)(.*)$/i);if(!m||(x&&m[3].replace(/^\^.*/,'')))return p;
  let n=m[1],rest=m[3],i=SO.findIndex(s=>s.toLowerCase()===n.toLowerCase());
  if(i===3&&/^dd/i.test(rest)){i=3;rest='a'+rest}else if(i<0)i=AM.indexOf(n.toUpperCase());
  const nm=mode==='am'?AM[i]:mode==='SO'?SO[i].toUpperCase():SO[i];
@@ -160,7 +159,7 @@ document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{$('#fl').class
 $('#in').oninput=e=>{S.intro=e.target.value.split(/\s*[-–—]\s*/).map(x=>x.trim()).filter(Boolean).map(x=>cv(x,'am')).join(' - ');save();renderAll()};
 [['ti','ti'],['su','su'],['au','au'],['tx','text']].forEach(([id,k])=>{const e=$('#'+id);e.value=S[k];e.oninput=()=>{S[k]=e.value;save();renderAll()}});
 const NS=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'],NF=['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'],RT=['C','C#','Db','D','D#','Eb','E','F','F#','Gb','G','G#','Ab','A','Bb','B'];
-const DEG=[[['I',0,''],['IV',5,''],['V',7,''],['V7',7,'7'],['VI7',9,'7'],['ii',2,'m'],['II7',2,'7'],['III7',4,'7'],['vi',9,'m']],[['i',0,'m'],['V7',7,'7'],['v',7,'m'],['iv',5,'m'],['♭VII7',10,'7'],['♭III',3,''],['II7',2,'7'],['ii',2,'m']]];
+const DEG=[[['I',0,''],['I7',0,'7'],['IV',5,''],['V',7,''],['V7',7,'7'],['VI7',9,'7'],['ii',2,'m'],['II7',2,'7'],['III7',4,'7'],['vi',9,'m']],[['i',0,'m'],['I7',0,'7'],['V7',7,'7'],['v',7,'m'],['iv',5,'m'],['♭VII7',10,'7'],['♭III',3,''],['♭VI',8,''],['II7',2,'7'],['ii',2,'m']]];
 function suggest(){if(!S.kr)return ['A','Am','B7','Bm','C','D','D7','Dm','E','E7','Em','F','G','G7'].map(x=>[x,'']);
  const mi=+S.km,r=S.kr,i0=NS.includes(r)?NS.indexOf(r):NF.indexOf(r),fl=r.includes('b')||(mi?['D','G','C','F']:['F']).includes(r),N=fl?NF:NS;
  return DEG[mi].map(([g,s,q])=>[(s?N[(i0+s)%12]:r)+q,g])}
@@ -170,9 +169,10 @@ function tr(n,t){const mi=+S.km;let N=n<0?NF:NS;
  if(S.kr){const i=(BS[S.kr[0]]+ac(S.kr[1])+n+120)%12,nr=t||(mi?['C','C#','D','Eb','E','F','F#','G','G#','A','Bb','B']:['C','Db','D','Eb','E','F','F#','G','Ab','A','Bb','B'])[i];
   S.kr=nr;N=(nr.includes('b')||(mi?['D','G','C','F']:['F']).includes(nr))?NF:NS}
  const f=(p,x)=>{const m=p.match(/^([A-G])([#b]?)(.*)$/);return m&&!(x&&m[3].replace(/^\^.*/,''))?N[(BS[m[1]]+ac(m[2])+n+120)%12]+m[3]:p};
- S.text=S.text.replace(/\[(_?)([^\]]+)\]/g,(a,u,c)=>'['+u+cv(c,'am').split('/').map(f).join('/')+']');
-S.text=S.text.split('\n').map(l=>/^\s*>/.test(l)?l.replace(/^(\s*>\s*)(.*)$/,(a,p,r)=>p+r.split(/(\s*[-–—]\s*)/).map((x,k)=>k%2||!x.trim()?x:cv(x.trim(),'am').split('/').map(f).join('/')).join('')):l).join('\n');
- S.intro=introArr().map(c=>cv(c,'am').split('/').map(f).join('/')).join(' - ');
+ const tc=c=>{const m=c.match(/^\((.*)\)$/);return m?'('+tc(m[1])+')':cv(c,'am').split('/').map(f).join('/')};
+ S.text=S.text.replace(/\[(_?)([^\]]+)\]/g,(a,u,c)=>'['+u+tc(c)+']');
+S.text=S.text.split('\n').map(l=>/^\s*>/.test(l)?l.replace(/^(\s*>\s*)(.*)$/,(a,p,r)=>p+r.split(/(\s*[-–—]\s*)/).map((x,k)=>k%2||!x.trim()?x:tc(x.trim())).join('')):l).join('\n');
+ S.intro=introArr().map(tc).join(' - ');
  $('#tx').value=S.text;save();renderAll()}
 document.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>tr(+b.dataset.n));
 kr.onchange=$('#km').onchange=()=>{S.kr=kr.value;S.km=+$('#km').value;save();fillKey()};
@@ -202,7 +202,8 @@ const tok=(r,o)=>r.slice(0,o).match(/\[([^\]]*)\]$/);
 
 $('#ed').onclick=e=>{const c=e.target.closest('.c');if(!c)return;document.querySelectorAll('#ed .c.sel').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');$('#set').hidden=true;$('#cp').hidden=true;const l=+c.dataset.l,o=+c.dataset.o,r=S.text.split('\n')[l],m=tok(r,o);
  T={l,o,i:null};openPop('Letra: '+(c.firstChild.textContent.trim()||'(final del verso)'),m?m[1]:'',c)};
-function openPop(label,v,c){$('#pl').textContent=label;
+let parenOn=false;const ppSet=v=>{parenOn=v;$('#pp').classList.toggle('on',v)};
+function openPop(label,v,c){$('#pl').textContent=label;ppSet(/^\(.*\)$/.test(v));v=v.replace(/^\((.*)\)$/,'$1');
  $('#pi').value=dsp(v.replace(/^_/,''));
  const sug=suggest(),seen=new Set(sug.map(x=>x[0])),used=[...new Set([...S.text.matchAll(/\[_?([^\]]+)\]/g)].map(x=>cv(x[1],'am')))].filter(x=>!seen.has(x));
  $('#chips').innerHTML='';[...sug,...used.map(x=>[x,''])].forEach(([x,g])=>{const b=el('button',g?'sg':'');b.innerHTML=`<b>${dsp(x).replace(/</g,'&lt;')}</b>${g?`<small>${g}</small>`:''}`;b.onclick=()=>put(x);$('#chips').appendChild(b)});
@@ -215,9 +216,10 @@ function interPut(val){const L=S.text.split('\n'),m=L[T.l].match(/^(\s*>\s*)(.*)
 $('#ei').onclick=e=>{const b=e.target.closest('.ic');if(!b)return;document.querySelectorAll('.sel').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');$('#set').hidden=true;$('#cp').hidden=true;const i=+b.dataset.i,a=introArr();T={i};openPop(i<a.length?'Intro: acorde '+(i+1):'Intro: acorde nuevo',i<a.length?a[i]:'',b)};
 function introPut(val){const a=introArr();let k;if(T.i>=a.length){if(val){a.push(val);k=a.length-1}}else if(val){a[T.i]=val;k=T.i}else a.splice(T.i,1);
  S.intro=a.join(' - ');save();renderAll();const b=k!=null?$(`#ei .ic[data-i="${k}"]`):null;if(b)b.click();else{$('#pop').hidden=true;document.querySelectorAll('.sel').forEach(x=>x.classList.remove('sel'))}}
-function put(val){val=cv(val,'am');if(T&&T.x){interPut(val);return}if(T&&T.i!=null){introPut(val);return}const L=S.text.split('\n');let r=L[T.l];const m=tok(r,T.o),s=m?T.o-m[0].length:T.o;
+function put(val){val=cv(val,'am');const tp=/^\(.*\)$/.test(val);val=val.replace(/^\((.*)\)$/,'$1');if(val&&(parenOn||tp))val='('+val+')';if(T&&T.x){interPut(val);return}if(T&&T.i!=null){introPut(val);return}const L=S.text.split('\n');let r=L[T.l];const m=tok(r,T.o),s=m?T.o-m[0].length:T.o;
  L[T.l]=r.slice(0,s)+(val?`[${val}]`:'')+r.slice(T.o);S.text=L.join('\n');$('#tx').value=S.text;save();renderAll();const c=$(`#ed .c[data-l="${T.l}"][data-o="${s+(val?val.length+2:0)}"]`);if(c)c.click();else $('#pop').hidden=true}
 
+$('#pp').onclick=()=>{ppSet(!parenOn);if($('#pi').value.trim())$('#ok').click()};
 $('#ok').onclick=()=>put($('#pi').value.trim().replace(/[\[\]]/g,''));$('#rm').onclick=()=>put('');$('#cx').onclick=()=>{$('#pop').hidden=true;document.querySelectorAll('.sel').forEach(x=>x.classList.remove('sel'))};
 $('#pi').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('#ok').click()}};
 function go(kind,dir){const cs=[...document.querySelectorAll('#ed .c')],i=cs.findIndex(x=>x.classList.contains('sel'));if(i<0)return;
