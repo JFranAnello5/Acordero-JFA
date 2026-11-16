@@ -50,6 +50,7 @@ textarea{min-height:52vh;line-height:1.5}
 #svt{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);background:var(--pn);color:var(--mut);border:1px solid var(--bd);border-radius:999px;padding:3px 12px;font-size:12px;opacity:0;transition:opacity .4s;pointer-events:none;z-index:4;white-space:nowrap}#svt.on{opacity:1}#svt.er{color:#b00020;border-color:#b00020}
 #fr{margin:0 0 8px;padding:8px;border:1px solid var(--bd);border-radius:10px;background:var(--pn)}#fr[hidden]{display:none}#fr input[type=text]{margin:0 0 6px}#fr .row{margin:0 0 6px;flex-wrap:wrap}#fr label{display:flex;gap:6px;align-items:center;font-size:13px}#frc{font-size:13px;color:var(--mut)}
 #set{max-height:34vh;max-height:34dvh;padding:6px 12px 10px}#set .sh{position:sticky;top:-6px;z-index:2;background:var(--pn);display:flex;justify-content:space-between;align-items:center;padding:4px 0 6px;margin:0 0 2px;border-bottom:1px solid var(--bd)}#set .sh button{padding:4px 14px}#set .sr{margin-bottom:3px}#set .sr input,#set .sr select{padding:3px 6px}#set input[type=color]{height:28px}#set button{padding:5px 10px}#set .hint{margin:4px 0}#set .row{margin:6px 0 0}
+@media(min-width:481px){.hb{display:contents}header{gap:6px;justify-content:flex-start}h1{flex:none}#fl{margin-left:8px;margin-right:auto}}
 .vb{display:inline-block;font-size:11px;font-weight:600;background:var(--ac);color:#fff;border-radius:999px;padding:2px 9px;margin-left:6px;vertical-align:middle;letter-spacing:.02em}
 .intro{display:flex;flex-wrap:wrap;align-items:baseline;margin:14px 0 2px}
 .intro .il .sc{font-size:.78em;letter-spacing:.05em}.intro .il{letter-spacing:.05em;font:var(--ey) var(--ew) var(--es) var(--ef);color:var(--ec);text-decoration:var(--ed);margin-right:.55em}
@@ -66,7 +67,7 @@ textarea{min-height:52vh;line-height:1.5}
 <div class="row" id="fm" style="margin:0 0 8px"><button data-f="*" title="Negrita (Ctrl+N)"><b>n</b></button><button data-f="_" title="Cursiva (Ctrl+I)"><i>i</i></button><button data-f="-" title="Subrayado (Ctrl+S)"><u>s</u></button><button data-f="#" title="Color (Ctrl+K)" style="color:var(--ec)">k</button><button data-f="e" title="Estribillo (Ctrl+E)" style="flex:2.4"><u style="text-decoration-thickness:1px;text-underline-offset:3px">E</u>stribillo</button></div><div class="row" style="margin:0 0 8px"><button id="fb" title="Buscar y reemplazar (Ctrl+F)">🔍 Buscar y reemplazar</button></div><div id="fr" hidden><input type="text" id="fq" data-nu placeholder="Buscar" autocomplete="off"><input type="text" id="fp" data-nu placeholder="Reemplazar por" autocomplete="off"><div class="row"><button id="fv" title="Anterior">◀</button><button id="fn2" title="Siguiente">▶</button><button id="fr1">Reemplazar</button><button id="fra">Reemplazar todo</button></div><div class="row" style="align-items:center"><label><input type="checkbox" id="fcs">Distinguir mayúsculas</label><span id="frc"></span></div></div><textarea id="tx" placeholder="Escribí la letra acá. Separá las estrofas con una línea en blanco.&#10;&#10;*Estribillo*&#10;…&#10;*fin Estribillo*"></textarea>
 <p class="hint">*negrita* · _cursiva_ · -subrayado- · #color#.<br>Lo que va entre *Estribillo* y *fin Estribillo* es el estribillo (en ⚙️ elegís cómo se centra); el resto va en dos columnas.<br>Una línea que empieza con <b>&gt;</b> es un interludio (acordes separados por guiones, ej. <i>&gt; La - Re - Mi7 - La</i>): no cuenta como estrofa.<br>Elegí la tonalidad para tener acordes sugeridos; los acordes se agregan en la pestaña Acordes.</p>
 </section>
-<section class="p" id="b"><p class="hint">Tocá una letra para ponerle un acorde (o un acorde de la Intro para cambiarlo). Para transportar, usá ±1/±2 semitonos o elegí la tonalidad.</p><div class="row" style="margin:0 0 10px;align-items:center"><button data-n="-2">−2</button><button data-n="-1">−1</button><select id="kt" style="margin:0;flex:2.2" title="Transportar a la tonalidad"></select><button data-n="1">+1</button><button data-n="2">+2</button></div><div id="ei"></div><div id="ed"></div></section>
+<section class="p" id="b"><p class="hint">Para transportar, usá ±1/±2 semitonos o elegí la tonalidad.</p><div class="row" style="margin:0 0 10px;align-items:center"><button data-n="-2">−2</button><button data-n="-1">−1</button><select id="kt" style="margin:0;flex:2.2" title="Transportar a la tonalidad"></select><button data-n="1">+1</button><button data-n="2">+2</button></div><p class="hint" style="margin:0 0 8px">Tocá una letra para ponerle un acorde (o un acorde de la Intro para cambiarlo). Flechas: ←→ letra, Ctrl+←→ palabra, ↑↓ renglón, Ctrl+↑↓ agrega un interludio.</p><div id="ei"></div><div id="ed"></div></section>
 <section class="p" id="c"><div class="row" style="margin:0 0 10px;flex-wrap:wrap"><button class="pri" id="pdf">Exportar PDF (A4)</button><button id="img">Exportar imagen (PNG)</button><button id="txt">Exportar letra (.txt)</button><button id="fitb">Ajustar a una hoja</button></div><div id="xmsg" class="hint" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 8px"><span id="xt"></span><button id="fitu" hidden>Deshacer ajuste</button></div><div id="hold"><div id="scaler"><div class="sheet" id="sheet"></div></div></div></section>
 <section class="p" id="d"><p class="hint" id="fst"></p>
 <input type="text" id="fn" placeholder="Nombre de la canción (vacío: usa el título)" autocomplete="off">
@@ -79,7 +80,7 @@ textarea{min-height:52vh;line-height:1.5}
 <p class="hint">Guardar deja la canción en este navegador. El archivo .txt trae la letra con los acordes entre corchetes y, arriba, los datos y estilos de la canción (tipografías, colores, tonalidad, tracking…). Se puede editar a mano.</p><p class="hint" style="text-align:center;margin-top:18px">Acordero JFA · v<span class="vn"></span></p></section>
 </main>
 <div id="pop" hidden>
-<div><b id="pl"></b></div><div class="row" style="margin-bottom:8px"><button id="w0" style="font-size:14px">« Palabra</button><button id="l0" style="font-size:14px">‹ Letra</button><button id="l1" style="font-size:14px">Letra ›</button><button id="w1" style="font-size:14px">Palabra »</button></div><textarea id="pi" rows="3" placeholder="Acorde (Am, G7, F#m...). / coloca el texto como subíndice y ^ como superíndice (por ej Do/Sol, Sol^sus4...)" autocapitalize="off" autocomplete="off"></textarea>
+<div style="display:flex;align-items:center;gap:6px"><b id="pl"></b><button type="button" class="q" id="pq" title="Atajos del teclado">?</button></div><div id="ph" class="qh" hidden style="max-height:24vh;max-height:24dvh;overflow:auto;margin:6px 0"><b>Atajos con un acorde seleccionado</b><br><b>Nota:</b> A B C D E F G (con b minúscula = Si).<br><b>Alteración:</b> # o + sostenido · Shift+B o - bemol.<br><b>Tipo:</b> m menor · 0 o ° disminuido (dim) · 5 aumentado (aug).<br><b>Extensión:</b> 7 · 9 · M (tras un 7 o 9: mayor, ej. 7M) · 2 = sus2 · 4 = sus4.<br>Tocar una tecla otra vez la saca. Una letra nueva reemplaza el acorde.<br><b>Moverse:</b> ← → letra · Ctrl+← → palabra · ↑ ↓ renglón · Ctrl+↑ ↓ agrega un renglón de interludio.<br><b>Botón ( ):</b> pone el acorde entre paréntesis.<br><b>Cuadro de texto:</b> si escribís ahí, las teclas escriben texto: <b>/</b> subíndice, <b>^</b> superíndice (Do/Sol, Sol^sus4). Los atajos de arriba funcionan cuando el cursor no está en ese cuadro.</div><div class="row" style="margin-bottom:8px"><button id="w0" style="font-size:14px">« Palabra</button><button id="l0" style="font-size:14px">‹ Letra</button><button id="l1" style="font-size:14px">Letra ›</button><button id="w1" style="font-size:14px">Palabra »</button></div><textarea id="pi" rows="3" placeholder="Acorde (Am, G7, F#m...). / coloca el texto como subíndice y ^ como superíndice (por ej Do/Sol, Sol^sus4...)" autocapitalize="off" autocomplete="off"></textarea>
 <div class="chips" id="chips"></div>
 <div class="row"><button class="pri" id="ok">Aplicar</button><button id="rm">Quitar</button><button id="pp" title="Poner el acorde entre paréntesis">( )</button><button id="cx">Cerrar</button></div></div>
 <div id="full" hidden><button id="fx">✕ Salir</button><div id="fw"></div></div>
@@ -94,7 +95,7 @@ const FACES=[['Cardo','cr',400,'normal'],['Cardo','cb',700,'normal'],['Cardo','c
 const loadFonts=()=>Promise.all(FACES.map(([f,k,w,y])=>document.fonts.load(`${y} ${w} 16px "${f}"`)).concat([document.fonts.ready]));
 const $=s=>document.querySelector(s),el=(t,c)=>{const e=document.createElement(t);if(c)e.className=c;return e};
 const FONTS=['Lora','Merriweather','Playfair Display','Libre Baskerville','Open Sans','Montserrat','Roboto Mono','Courier Prime','Caveat','Cardo','Georgia','Arial'];
-const APP_VERSION='1.3';
+const APP_VERSION='1.4';
 const KEYS=[['l','Letra'],['c','Acordes'],['t','Título'],['s','Subtítulo'],['a','Autor'],['e','Estribillo y otros']];
 const DEF=()=>({l:{f:'Cardo',c:'#000000',s:19},c:{f:'Roboto Mono',c:'#780606',s:15,b:1},t:{f:'Cardo',c:'#780606',s:38,b:1},s:{f:'Cardo',c:'#444444',s:19,i:1},a:{f:'Cardo',c:'#444444',s:19},e:{f:'Cardo',c:'#780606',s:19,b:1}});
 document.querySelectorAll('.vn').forEach(e=>e.textContent=APP_VERSION);
@@ -200,7 +201,7 @@ $('#tx').addEventListener('keydown',e=>{if(!(e.ctrlKey||e.metaKey)||e.altKey||e.
 let T=null;
 const tok=(r,o)=>r.slice(0,o).match(/\[([^\]]*)\]$/);
 
-$('#ed').onclick=e=>{const c=e.target.closest('.c');if(!c)return;document.querySelectorAll('#ed .c.sel').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');$('#set').hidden=true;$('#cp').hidden=true;const l=+c.dataset.l,o=+c.dataset.o,r=S.text.split('\n')[l],m=tok(r,o);
+$('#ed').onclick=e=>{const c=e.target.closest('.c');if(!c)return;document.querySelectorAll('.sel').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');$('#set').hidden=true;$('#cp').hidden=true;const l=+c.dataset.l,o=+c.dataset.o,r=S.text.split('\n')[l],m=tok(r,o);
  T={l,o,i:null};openPop('Letra: '+(c.firstChild.textContent.trim()||'(final del verso)'),m?m[1]:'',c)};
 let parenOn=false;const ppSet=v=>{parenOn=v;$('#pp').classList.toggle('on',v)};
 function openPop(label,v,c){$('#pl').textContent=label;ppSet(/^\(.*\)$/.test(v));v=v.replace(/^\((.*)\)$/,'$1');
@@ -219,6 +220,7 @@ function introPut(val){const a=introArr();let k;if(T.i>=a.length){if(val){a.push
 function put(val){val=cv(val,'am');const tp=/^\(.*\)$/.test(val);val=val.replace(/^\((.*)\)$/,'$1');if(val&&(parenOn||tp))val='('+val+')';if(T&&T.x){interPut(val);return}if(T&&T.i!=null){introPut(val);return}const L=S.text.split('\n');let r=L[T.l];const m=tok(r,T.o),s=m?T.o-m[0].length:T.o;
  L[T.l]=r.slice(0,s)+(val?`[${val}]`:'')+r.slice(T.o);S.text=L.join('\n');$('#tx').value=S.text;save();renderAll();const c=$(`#ed .c[data-l="${T.l}"][data-o="${s+(val?val.length+2:0)}"]`);if(c)c.click();else $('#pop').hidden=true}
 
+$('#pq').onclick=()=>{$('#ph').hidden=!$('#ph').hidden};
 $('#pp').onclick=()=>{ppSet(!parenOn);if($('#pi').value.trim())$('#ok').click()};
 $('#ok').onclick=()=>put($('#pi').value.trim().replace(/[\[\]]/g,''));$('#rm').onclick=()=>put('');$('#cx').onclick=()=>{$('#pop').hidden=true;document.querySelectorAll('.sel').forEach(x=>x.classList.remove('sel'))};
 $('#pi').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('#ok').click()}};
@@ -227,6 +229,34 @@ function go(kind,dir){const cs=[...document.querySelectorAll('#ed .c')],i=cs.fin
  let j=i+dir;if(kind==='w')while(j>=0&&j<cs.length&&!st(j))j+=dir;
  if(j>=0&&j<cs.length){cs[j].click()}}
 [['w0','w',-1],['l0','l',-1],['l1','l',1],['w1','w',1]].forEach(([id,k,d])=>$('#'+id).onclick=()=>go(k,d));
+/* teclado de acordes: letra = nota, m / 7 / M / 2 / 4 / # / b modifican */
+const CK=/^([A-G])([#b]?)(m|dim|aug)?(7|9)?(M)?(?:\^sus([24]))?$/;
+function kbChord(K,cur){
+ if(K!=='B'&&/^[a-gA-G]$/.test(K)){return K.toUpperCase()}
+ const m=CK.exec(cur);if(!m)return null;const o={r:m[1],a:m[2],q:m[3]||'',e:m[4]||'',M:!!m[5],u:m[6]||''},tg=x=>o.q=o.q===x?'':x;
+ if(K==='m')tg('m');else if(K==='0'||K==='°')tg('dim');else if(K==='5')tg('aug');
+ else if(K==='7'||K==='9'){o.e=o.e===K?'':K;if(!o.e)o.M=false}
+ else if(K==='M'){if(o.e)o.M=!o.M;else tg('m')}
+ else if(K==='2'||K==='4')o.u=o.u===K?'':K;
+ else if(K==='#'||K==='+')o.a=o.a==='#'?'':'#';else if(K==='B'||K==='-')o.a=o.a==='b'?'':'b';
+ else return null;
+ return o.r+o.a+o.q+o.e+(o.M?'M':'')+(o.u?'^sus'+o.u:'')}
+document.addEventListener('keydown',e=>{if(e.ctrlKey||e.altKey||e.metaKey||e.defaultPrevented||e.key.length!==1)return;
+ if(!$('#b').classList.contains('on')||$('#pop').hidden||$('#cp').hidden===false||!T||!document.querySelector('#ed .sel, #ei .sel'))return;
+ const t=e.target;if(t&&(t.id==='pi'||/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)))return;
+ const cur=cv($('#pi').value.trim(),'am').replace(/^\((.*)\)$/,'$1'),v=kbChord(e.key,cur);if(v==null)return;
+ e.preventDefault();put(v)});
+const curSel=()=>document.querySelector('#ed .c.sel, #ed .chd.sel');
+function goLine(dir){const s=curSel();if(!s)return;const G=[];document.querySelectorAll('#ed .c, #ed .chd[data-l]').forEach(x=>{const g=G[G.length-1];if(g&&g[0].dataset.l===x.dataset.l)g.push(x);else G.push([x])});
+ const k=G.findIndex(g=>g.includes(s)),t=G[k+dir];if(t)t[0].click()}
+function goChd(dir){const s=curSel(),a=[...s.parentNode.querySelectorAll('.chd')],t=a[a.indexOf(s)+dir];if(t)t.click()}
+function addInter(dir){const s=curSel();if(!s)return;const L=S.text.split('\n'),at=+s.dataset.l+(dir>0?1:0);L.splice(at,0,'> ');S.text=L.join('\n');$('#tx').value=S.text;save();renderAll();const q=$(`#ed .chd[data-l="${at}"][data-k="0"]`);if(q)q.click()}
+document.addEventListener('keydown',e=>{const K=e.key;if(K!=='ArrowLeft'&&K!=='ArrowRight'&&K!=='ArrowUp'&&K!=='ArrowDown')return;if(e.shiftKey||e.metaKey||e.defaultPrevented)return;
+ if(!$('#b').classList.contains('on')||$('#pop').hidden||$('#cp').hidden===false||!curSel())return;
+ const t=e.target;if(t&&(t.id==='pi'||/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)))return;
+ e.preventDefault();const m=e.ctrlKey||e.altKey,d=(K==='ArrowLeft'||K==='ArrowUp')?-1:1;
+ if(K==='ArrowUp'||K==='ArrowDown'){if(m)addInter(d);else goLine(d)}
+ else if(curSel().classList.contains('chd'))goChd(d);else go(m?'w':'l',d)});
 const mc=()=>(S.mp??2)*96/72;
 function fitLines(root){root.querySelectorAll('.ln').forEach(d=>{
  d.style.letterSpacing=d.style.wordSpacing='';const sp=d.children,N=sp.length,a=d.offsetWidth;if(!a||N<3)return;
