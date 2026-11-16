@@ -50,8 +50,9 @@ textarea{min-height:52vh;line-height:1.5}
 #svt{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);background:var(--pn);color:var(--mut);border:1px solid var(--bd);border-radius:999px;padding:3px 12px;font-size:12px;opacity:0;transition:opacity .4s;pointer-events:none;z-index:4;white-space:nowrap}#svt.on{opacity:1}#svt.er{color:#b00020;border-color:#b00020}
 #fr{margin:0 0 8px;padding:8px;border:1px solid var(--bd);border-radius:10px;background:var(--pn)}#fr[hidden]{display:none}#fr input[type=text]{margin:0 0 6px}#fr .row{margin:0 0 6px;flex-wrap:wrap}#fr label{display:flex;gap:6px;align-items:center;font-size:13px}#frc{font-size:13px;color:var(--mut)}
 #set{max-height:34vh;max-height:34dvh;padding:6px 12px 10px}#set .sh{position:sticky;top:-6px;z-index:2;background:var(--pn);display:flex;justify-content:space-between;align-items:center;padding:4px 0 6px;margin:0 0 2px;border-bottom:1px solid var(--bd)}#set .sh button{padding:4px 14px}#set .sr{margin-bottom:3px}#set .sr input,#set .sr select{padding:3px 6px}#set input[type=color]{height:28px}#set button{padding:5px 10px}#set .hint{margin:4px 0}#set .row{margin:6px 0 0}
+.vb{display:inline-block;font-size:11px;font-weight:600;background:var(--ac);color:#fff;border-radius:999px;padding:2px 9px;margin-left:6px;vertical-align:middle;letter-spacing:.02em}
 </style></head><body>
-<header><h1>Acordero JFA</h1><div class="hb"><button id="fl" title="Archivo">📁 Archivo</button><button id="fs" style="margin-left:10px" title="Pantalla completa"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7V2h5M11 2h5v5M16 11v5h-5M7 16H2v-5"/></svg></button><button id="th" title="Modo claro / oscuro"></button><button id="un" class="ur" title="Deshacer (Ctrl+Z)" disabled>↶</button><button id="re" class="ur" title="Rehacer (Ctrl+Y)" disabled>↷</button><button id="gear" title="Configuración">⚙️</button></div></header>
+<header><h1>Acordero JFA <span class="vb" title="Versión">v. <span class="vn"></span></span></h1><div class="hb"><button id="fl" title="Archivo">📁 Archivo</button><button id="fs" style="margin-left:10px" title="Pantalla completa"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7V2h5M11 2h5v5M16 11v5h-5M7 16H2v-5"/></svg></button><button id="th" title="Modo claro / oscuro"></button><button id="un" class="ur" title="Deshacer (Ctrl+Z)" disabled>↶</button><button id="re" class="ur" title="Rehacer (Ctrl+Y)" disabled>↷</button><button id="gear" title="Configuración">⚙️</button></div></header>
 <nav><button data-t="a" class="on">Letra</button><button data-t="b">Acordes</button><button data-t="c">Exportar</button></nav>
 <main>
 <section class="p on" id="a">
@@ -87,7 +88,7 @@ const FACES=[['Cardo','cr',400,'normal'],['Cardo','cb',700,'normal'],['Cardo','c
 const loadFonts=()=>Promise.all(FACES.map(([f,k,w,y])=>document.fonts.load(`${y} ${w} 16px "${f}"`)).concat([document.fonts.ready]));
 const $=s=>document.querySelector(s),el=(t,c)=>{const e=document.createElement(t);if(c)e.className=c;return e};
 const FONTS=['Lora','Merriweather','Playfair Display','Libre Baskerville','Open Sans','Montserrat','Roboto Mono','Courier Prime','Caveat','Cardo','Georgia','Arial'];
-const APP_VERSION='1.2';
+const APP_VERSION='1.25';
 const KEYS=[['l','Letra'],['c','Acordes'],['t','Título'],['s','Subtítulo'],['a','Autor'],['e','Estribillo y otros']];
 const DEF=()=>({l:{f:'Cardo',c:'#000000',s:19},c:{f:'Roboto Mono',c:'#780606',s:15,b:1},t:{f:'Cardo',c:'#780606',s:38,b:1},s:{f:'Cardo',c:'#444444',s:19,i:1},a:{f:'Cardo',c:'#444444',s:19},e:{f:'Cardo',c:'#780606',s:19,b:1}});
 document.querySelectorAll('.vn').forEach(e=>e.textContent=APP_VERSION);
