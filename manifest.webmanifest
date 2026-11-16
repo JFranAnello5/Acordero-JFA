@@ -1,6 +1,6 @@
 {
-  "name": "Letras con acordes",
-  "short_name": "Acordes",
+  "name": "Acordero JFA",
+  "short_name": "Acordero",
   "description": "Letras de canciones con acordes, para imprimir en A4",
   "lang": "es",
   "start_url": "./",
