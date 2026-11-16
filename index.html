@@ -15,7 +15,7 @@
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#1d1b19;--fg:#eee;--mut:#9a948a;--bd:#3d3935;--ac:#555;--pn:#2a2724}}:root[data-theme=dark]{--bg:#1d1b19;--fg:#eee;--mut:#9a948a;--bd:#3d3935;--ac:#555;--pn:#2a2724}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px system-ui,sans-serif}
-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--bd)}
+header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:6;background:var(--bg)}
 h1{font-size:15px;margin:0;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.hb{flex:none}@media(max-width:480px){h1{display:none}header{display:block}.hb{width:100%}#fl{margin-right:auto}}button,select,input,textarea{font:inherit;color:inherit}
 button{background:var(--pn);border:1px solid var(--bd);border-radius:8px;padding:8px 12px;cursor:pointer}
 button.on,button.pri{background:var(--ac);color:#fff;border-color:var(--ac)}
