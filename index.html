@@ -97,7 +97,7 @@ nav[hidden]{display:none}#qs{margin-left:6px;padding:8px 10px}
 <p class="hint">Guardar deja la canción en este navegador. El archivo .txt trae la letra con los acordes entre corchetes y, arriba, los datos y estilos de la canción (tipografías, colores, tonalidad, tracking…). Se puede editar a mano.</p><p class="hint" style="text-align:center;margin-top:18px">Acordero JFA · v<span class="vn"></span></p></section>
 </main>
 <div id="pop" hidden>
-<div style="display:flex;align-items:center;gap:6px"><b id="pl"></b><button type="button" id="pq" style="margin-left:auto;padding:4px 10px;font-size:13px">Ver atajos de teclado</button></div><div id="ph" class="qh" hidden style="max-height:24vh;max-height:24dvh;overflow:auto;margin:6px 0"><b>Atajos con un acorde seleccionado</b><br><b>Nota:</b> A B C D E F G (con b minúscula = Si).<br><b>Alteración:</b> # o + sostenido · Shift+B o - bemol.<br><b>Tipo:</b> m menor · 0 o ° disminuido (dim) · 5 aumentado (aug).<br><b>Extensión:</b> 7 · 9 · M (tras un 7 o 9: mayor, ej. 7M) · 2 = sus2 · 4 = sus4.<br>Tocar una tecla otra vez la saca. Una letra nueva reemplaza el acorde.<br><b>Moverse:</b> ← → letra · Ctrl+← → palabra · ↑ ↓ renglón · Ctrl+↑ ↓ agrega un renglón de interludio.<br><b>Paréntesis:</b> tecla p o botón ( ).<br><b>Cuadro de texto:</b> si escribís ahí, las teclas escriben texto: <b>/</b> subíndice, <b>^</b> superíndice (Do/Sol, Sol^sus4). Los atajos de arriba funcionan cuando el cursor no está en ese cuadro.</div><div class="row" style="margin-bottom:8px"><button id="w0" style="font-size:14px">« Palabra</button><button id="l0" style="font-size:14px">‹ Letra</button><button id="l1" style="font-size:14px">Letra ›</button><button id="w1" style="font-size:14px">Palabra »</button></div><textarea id="pi" rows="3" placeholder="Acorde (Am, G7, F#m...). / coloca el texto como subíndice y ^ como superíndice (por ej Do/Sol, Sol^sus4...)" autocapitalize="off" autocomplete="off"></textarea>
+<div style="display:flex;align-items:center;gap:6px"><b id="pl"></b><button type="button" id="pq" style="margin-left:auto;padding:4px 10px;font-size:13px">Ver atajos de teclado</button></div><div id="ph" class="qh" hidden style="max-height:24vh;max-height:24dvh;overflow:auto;margin:6px 0"><b>Atajos con un acorde seleccionado</b><br><b>Nota:</b> A B C D E F G (con b minúscula = Si).<br><b>Alteración:</b> # o + sostenido · Shift+B o - bemol.<br><b>Tipo:</b> m menor · 0 o ° disminuido (dim) · 5 aumentado (aug).<br><b>Extensión:</b> 7 · 9 · M (tras un 7 o 9: mayor, ej. 7M) · 2 = sus2 · 4 = sus4.<br>Tocar una tecla otra vez la saca. Una letra nueva reemplaza el acorde.<br><b>Moverse:</b> ← → letra · Ctrl+← → palabra · ↑ ↓ renglón · Ctrl+↑ ↓ salta entre estrofas (incluido el Estribillo).<br><b>Interludio:</b> Ctrl+Enter agrega un renglón de interludio debajo.<br><b>Quitar acorde:</b> Retroceso (Backspace).<br><b>Intro:</b> ← → avanza entre los acordes de la intro (al llegar al final, abre un acorde nuevo) · Ctrl+← → salta al primero o al último.<br><b>Cerrar:</b> Esc.<br><b>Paréntesis:</b> tecla p o botón ( ).<br><b>Cuadro de texto:</b> si escribís ahí, las teclas escriben texto: <b>/</b> subíndice, <b>^</b> superíndice (Do/Sol, Sol^sus4). Los atajos de arriba funcionan cuando el cursor no está en ese cuadro.</div><div class="row" style="margin-bottom:8px"><button id="w0" style="font-size:14px">« Palabra</button><button id="l0" style="font-size:14px">‹ Letra</button><button id="l1" style="font-size:14px">Letra ›</button><button id="w1" style="font-size:14px">Palabra »</button></div><textarea id="pi" rows="3" placeholder="Acorde (Am, G7, F#m...). / coloca el texto como subíndice y ^ como superíndice (por ej Do/Sol, Sol^sus4...)" autocapitalize="off" autocomplete="off"></textarea>
 <div class="chips" id="chips"></div>
 <div class="row"><button class="pri" id="ok">Aplicar</button><button id="rm">Quitar</button><button id="pp" title="Poner el acorde entre paréntesis">( )</button><button id="cx">Cerrar</button></div></div>
 <div id="full" hidden><button id="fx" title="Salir del modo escenario">✕</button><button id="scmenu" title="Mostrar u ocultar los controles">⋯</button><div id="fw"></div><div id="sctb" hidden><button id="sctu" title="Subir medio tono">+½</button><select id="sctsel2" title="Elegir el tono"></select><button id="sctd" title="Bajar medio tono">−½</button></div><div id="scbar"><div class="scg scgx"><button id="scx" title="Cerrar las opciones">✕</button></div>
@@ -170,7 +170,9 @@ function lineEl(raw,i){
   if(ch==='|'&&raw[j+1]===':'){tk('||',j,'');tk(':',j+1,' rc');j++;continue}
   if(ch===':'&&raw[j+1]==='|'){const q=raw.slice(j+2).match(/^(?:\s?x\d+)/);tk(':',j,' rc');tk('||'+(q?q[0]:''),j+1,'');j+=1+(q?q[0].length:0)+1-1;continue}
   if(ch in m){if(m[ch]){m[ch]=0;continue}
-   const n=raw[j+1];if(n&&n!==' '&&n!=='['&&raw.indexOf(ch,j+1)>-1&&((ch!=='-'&&ch!=='#')||j===0||/[\s(¿¡]/.test(raw[j-1]))){m[ch]=1;continue}}
+   let k=j+1;while(raw[k]==='['){const e=raw.indexOf(']',k);if(e>k+1)k=e+1;else break}
+   let q=j-1;while(raw[q]===']'){const b=raw.lastIndexOf('[',q);if(b<0)break;q=b-1}
+   const n=raw[k];if(n&&n!==' '&&n!=='['&&raw.indexOf(ch,j+1)>-1&&((ch!=='-'&&ch!=='#')||q<0||/[\s(¿¡]/.test(raw[q]))){m[ch]=1;continue}}
   add(ch,j)}
  m={'*':0,'_':0,'-':0,'#':0};add('\u00a0',raw.length);
  if(hu)d.classList.add('hu');if(hd)d.classList.add('hd');return d}
@@ -329,12 +331,32 @@ function goLine(dir){const s=curSel();if(!s)return;const G=[];document.querySele
  const k=G.findIndex(g=>g.includes(s)),t=G[k+dir];if(t)t[0].click()}
 function goChd(dir){const s=curSel(),a=[...s.parentNode.querySelectorAll('.chd')],t=a[a.indexOf(s)+dir];if(t)t.click()}
 function addInter(dir){const s=curSel();if(!s)return;const L=S.text.split('\n'),at=+s.dataset.l+(dir>0?1:0);L.splice(at,0,'> ');S.text=L.join('\n');$('#tx').value=S.text;save();renderAll();const q=$(`#ed .chd[data-l="${at}"][data-k="0"]`);if(q)q.click()}
-document.addEventListener('keydown',e=>{const K=e.key;if(K!=='ArrowLeft'&&K!=='ArrowRight'&&K!=='ArrowUp'&&K!=='ArrowDown')return;if(e.shiftKey||e.metaKey||e.defaultPrevented)return;
- if(!$('#b').classList.contains('on')||$('#pop').hidden||$('#cp').hidden===false||!curSel())return;
- const t=e.target;if(t&&(t.id==='pi'||/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)))return;
- e.preventDefault();const m=e.ctrlKey||e.altKey,d=(K==='ArrowLeft'||K==='ArrowUp')?-1:1;
- if(K==='ArrowUp'||K==='ArrowDown'){if(m)addInter(d);else goLine(d)}
+const curIc=()=>document.querySelector('#ei .ic.sel');
+const kbOK=e=>{if(!$('#b').classList.contains('on')||$('#pop').hidden||$('#cp').hidden===false)return false;const t=e.target;return!(t&&(t.id==='pi'||/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)))};
+function goStanza(dir){const s=curSel();if(!s)return;const L=S.text.split('\n'),mk=x=>/^\*?\s*(fin\s+)?estribillo\s*\*?$/i.test(x.trim()),ok=x=>x.trim()&&!mk(x),st=[];
+ L.forEach((x,i)=>{if(ok(x)&&(i===0||!ok(L[i-1])))st.push(i)});
+ const all=[...document.querySelectorAll('#ed .c, #ed .chd[data-l]')],si=all.indexOf(s),fs=st.map(t=>all.find(x=>+x.dataset.l>=t)).filter(Boolean).map(f=>[f,all.indexOf(f)]);
+ const c=dir>0?fs.filter(a=>a[1]>si):fs.filter(a=>a[1]<si).reverse();if(c.length)c[0][0].click()}
+document.addEventListener('keydown',e=>{const K=e.key;if(!/^(Arrow(Left|Right|Up|Down)|Backspace)$/.test(K))return;if(e.shiftKey||e.metaKey||e.defaultPrevented)return;
+ if(!kbOK(e))return;const ic=curIc();
+ if(ic){if(K==='Backspace'){e.preventDefault();$('#rm').click();return}if(K!=='ArrowLeft'&&K!=='ArrowRight')return;e.preventDefault();
+  const it=[...document.querySelectorAll('#ei .ic')],n=introArr().length,i=+ic.dataset.i,m=e.ctrlKey||e.altKey;let t;
+  if(K==='ArrowLeft')t=m?it[0]:it[Math.max(i-1,0)];else t=m?it[Math.max(n-1,0)]:it[Math.min(i+1,n)];if(t)t.click();return}
+ if(!curSel())return;e.preventDefault();if(K==='Backspace'){$('#rm').click();return}
+ const m=e.ctrlKey||e.altKey,d=(K==='ArrowLeft'||K==='ArrowUp')?-1:1;
+ if(K==='ArrowUp'||K==='ArrowDown'){if(m)goStanza(d);else goLine(d)}
  else if(curSel().classList.contains('chd'))goChd(d);else go(m?'w':'l',d)});
+document.addEventListener('keydown',e=>{if(e.key!=='Enter'||!(e.ctrlKey||e.metaKey)||e.altKey||e.shiftKey||e.defaultPrevented)return;
+ if(!$('#b').classList.contains('on')||$('#pop').hidden||$('#cp').hidden===false||!curSel())return;
+ const t=e.target;if(t&&t.id!=='pi'&&/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))return;
+ e.preventDefault();if(t&&t.id==='pi'&&$('#pi').value.trim())$('#ok').click();addInter(1)});
+document.addEventListener('keydown',e=>{if(e.key!=='Escape'||e.defaultPrevented)return;const vis=s=>{const x=$(s);return!!x&&!x.hidden};
+ if(vis('#ab')||vis('#ed2'))return;
+ if(vis('#cp')){e.preventDefault();$('#cp').hidden=true;return}
+ if(vis('#pop')){e.preventDefault();$('#cx').click();return}
+ if(vis('#fr')){e.preventDefault();$('#fb').click();return}
+ if(vis('#set')){e.preventDefault();closeSet();return}
+ if(vis('#full')){e.preventDefault();closeFS()}});
 const mc=()=>(S.mp??2)*96/72;
 const cgap=()=>(S.cg??4)*96/72;
 /* Colisión de acordes: abre espacio solo donde dos acordes se tocan */
