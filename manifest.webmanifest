@@ -1,7 +1,7 @@
 {
   "name": "Acordero JFA",
   "short_name": "Acordero JFA",
-  "description": "Acordero JFA v1.56: letras de canciones con acordes, para imprimir en A4",
+  "description": "Acordero JFA v1.6: letras de canciones con acordes, para imprimir en A4",
   "lang": "es",
   "start_url": "./",
   "scope": "./",
